@@ -1,8 +1,9 @@
 // src/products/product.controller.ts
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Product } from './product.schema';
 import { CreateProductDto } from './dto/create-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductSwagger } from './product.swagger.entity';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
@@ -26,11 +27,19 @@ export class ProductController {
     return this.productService.getAllProducts();
   }
 
-  @Put(':id')
-  @ApiOperation({ summary: 'Update a product by ID' })
+  @Get(':id')
+  @ApiOperation({ summary: 'Get a product by ID' })
+  @ApiResponse({ status: 200, description: 'Returns the product data', type: ProductSwagger })
+  @ApiResponse({ status: 404, description: 'Product not found' })
+  async getProductById(@Param('id') id: string): Promise<Product> {
+    return this.productService.getProductById(id);
+  }
+
+  @Patch(':id')
+  @ApiOperation({ summary: 'Update a product by ID (Partial Update)' })
   @ApiResponse({ status: 200, description: 'Product successfully updated', type: ProductSwagger })
   @ApiResponse({ status: 404, description: 'Product not found' })
-  async updateProduct(@Param('id') id: string, @Body() updateData: CreateProductDto): Promise<Product> {
+  async updateProduct(@Param('id') id: string, @Body() updateData: UpdateProductDto): Promise<Product> {
     return this.productService.updateProduct(id, updateData);
   }
 
