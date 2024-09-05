@@ -1,11 +1,10 @@
-// src/products/product.controller.ts
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Product } from './product.schema';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductSwagger } from './product.swagger.entity';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiQuery } from '@nestjs/swagger';
 
 @ApiTags('products')
 @Controller('products')
@@ -21,10 +20,15 @@ export class ProductController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all products' })
+  @ApiOperation({ summary: 'Get all products with pagination' })
+  @ApiQuery({ name: 'page', required: false, description: 'Page number', type: Number })
+  @ApiQuery({ name: 'limit', required: false, description: 'Number of items per page', type: Number })
   @ApiResponse({ status: 200, description: 'Returns an array of products', type: [ProductSwagger] })
-  async getAllProducts(): Promise<Product[]> {
-    return this.productService.getAllProducts();
+  async getAllProducts(
+    @Query('page') page: number = 1,   // page number, default is 1
+    @Query('limit') limit: number = 10 // items per page, default is 10
+  ): Promise<{ products: Product[], totalCount: number }> {
+    return this.productService.getAllProducts(page, limit);
   }
 
   @Get(':id')

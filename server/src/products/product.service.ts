@@ -28,10 +28,27 @@ export class ProductService {
     }
   }
 
-  async getAllProducts(): Promise<Product[]> {
-    this.logger.log('Fetching all products');
+  // Метод с пагинация
+  async getAllProducts(page: number = 1, limit: number = 10): Promise<{ products: Product[], totalCount: number }> {
+    this.logger.log(`Fetching products, page: ${page}, limit: ${limit}`);
+
+    // Проверка за негативни стойности на страницата и лимита
+    if (page < 1 || limit < 1) {
+      this.logger.error('Invalid pagination values');
+      throw new BadRequestException('Page and limit must be positive numbers');
+    }
+
     try {
-      return await this.productModel.find().exec();
+      // Изчисляване на колко продукти да пропуснем (offset)
+      const skip = (page - 1) * limit;
+      
+      // Извличане на продуктите и общия брой
+      const [products, totalCount] = await Promise.all([
+        this.productModel.find().skip(skip).limit(limit).exec(),
+        this.productModel.countDocuments().exec(),
+      ]);
+
+      return { products, totalCount };
     } catch (error) {
       this.logger.error('Failed to retrieve products', error.stack);
       throw new InternalServerErrorException('Failed to retrieve products');
