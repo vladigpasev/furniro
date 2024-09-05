@@ -1,3 +1,4 @@
+// src/products/product.controller.ts
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Product } from './product.schema';
@@ -20,15 +21,21 @@ export class ProductController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all products with pagination' })
+  @ApiOperation({ summary: 'Get all products with filtering, sorting, and pagination' })
   @ApiQuery({ name: 'page', required: false, description: 'Page number', type: Number })
   @ApiQuery({ name: 'limit', required: false, description: 'Number of items per page', type: Number })
+  @ApiQuery({ name: 'categories', required: false, description: 'Array of Category IDs for filtering', type: [String] })
+  @ApiQuery({ name: 'sortBy', required: false, enum: ['name', 'createdAt', 'price'], description: 'Sort by name, creation date, or price' })
+  @ApiQuery({ name: 'sortOrder', required: false, enum: ['asc', 'desc'], description: 'Sort order, ascending or descending' })
   @ApiResponse({ status: 200, description: 'Returns an array of products', type: [ProductSwagger] })
   async getAllProducts(
-    @Query('page') page: number = 1,   // page number, default is 1
-    @Query('limit') limit: number = 10 // items per page, default is 10
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+    @Query('categories') categories?: string[], // Позволява масив от категории
+    @Query('sortBy') sortBy: string = 'createdAt',
+    @Query('sortOrder') sortOrder: 'asc' | 'desc' = 'desc',
   ): Promise<{ products: Product[], totalCount: number }> {
-    return this.productService.getAllProducts(page, limit);
+    return this.productService.getAllProducts(page, limit, categories, sortBy, sortOrder);
   }
 
   @Get(':id')

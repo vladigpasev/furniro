@@ -1,5 +1,5 @@
 // src/products/product.schema.ts
-import { Schema, Document } from 'mongoose';
+import { Schema, Document, Types } from 'mongoose';
 
 export interface Product extends Document {
   name: string;
@@ -13,6 +13,7 @@ export interface Product extends Document {
   additional_photos?: string[];
   sizes?: string[];
   colors?: string[];
+  category: Types.ObjectId;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -29,4 +30,5 @@ export const ProductSchema = new Schema({
   additional_photos: { type: [String], default: [] },
   sizes: { type: [String], default: [] },
   colors: { type: [String], default: [] },
+  category: { type: Schema.Types.ObjectId, ref: 'Category', required: true },
 }, { timestamps: true });

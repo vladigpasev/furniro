@@ -98,4 +98,12 @@ export class CreateProductDto {
   @IsArray()
   @IsOptional()
   colors?: string[];
+
+  @ApiProperty({
+    description: 'The category ID that this product belongs to',
+    example: '64e73458dfb1a820b5b47e07',
+  })
+  @IsString()
+  @IsNotEmpty()
+  category: string;  // Ново поле за категорията
 }
