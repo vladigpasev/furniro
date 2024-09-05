@@ -3,7 +3,7 @@ import { S3Client } from '@aws-sdk/client-s3';
 import { Upload } from '@aws-sdk/lib-storage';
 import * as sharp from 'sharp';
 import { v4 as uuidv4 } from 'uuid';
-import { ImageResponseDto } from './dto/image-response.dto';
+import { ImageResponseDto, ResizedImageDto } from './dto/image-response.dto';
 
 @Injectable()
 export class ImageService {
