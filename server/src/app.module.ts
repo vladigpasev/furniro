@@ -5,6 +5,7 @@ import { ProductsModule } from './products/products.module';
 import { CategoryModule } from './categories/category.module';
 import { ImageModule } from './upload-image/upload-image.module';
 import { MailOffersModule } from './mailchimp/mail-offers.module';
+import { OrderModule } from './orders/order.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { MailOffersModule } from './mailchimp/mail-offers.module';
     ProductsModule,
     CategoryModule,
     ImageModule,
-    MailOffersModule
+    MailOffersModule,
+    OrderModule
   ],
 })
 export class AppModule {}
