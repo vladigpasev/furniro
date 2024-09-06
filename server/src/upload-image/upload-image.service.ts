@@ -11,7 +11,11 @@ export class ImageService {
 
   constructor() {
     // Initialize S3 client once and reuse
-    if (!process.env.AWS_REGION || !process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY) {
+    if (
+      !process.env.AWS_REGION ||
+      !process.env.AWS_ACCESS_KEY_ID ||
+      !process.env.AWS_SECRET_ACCESS_KEY
+    ) {
       throw new Error('Missing AWS S3 credentials');
     }
     this.s3 = new S3Client({
@@ -23,12 +27,17 @@ export class ImageService {
     });
   }
 
-  async uploadImageToS3(file: Express.Multer.File, sizes: string[]): Promise<ImageResponseDto> {
+  async uploadImageToS3(
+    file: Express.Multer.File,
+    sizes: string[],
+  ): Promise<ImageResponseDto> {
     const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-    
+
     // Validating file type
     if (!validTypes.includes(file.mimetype)) {
-      throw new BadRequestException('Invalid file type. Only JPEG and PNG are allowed.');
+      throw new BadRequestException(
+        'Invalid file type. Only JPEG and PNG are allowed.',
+      );
     }
 
     if (!file.buffer || file.buffer.length === 0) {
@@ -41,15 +50,26 @@ export class ImageService {
 
     // Optimize original image
     const compressedBuffer = await sharp(file.buffer)
-      .resize({ width: 1080, height: 1080, fit: sharp.fit.inside, withoutEnlargement: true })
+      .resize({
+        width: 1080,
+        height: 1080,
+        fit: sharp.fit.inside,
+        withoutEnlargement: true,
+      })
       .jpeg({ quality: 80 })
       .toBuffer();
 
-    const originalUrl = await this.uploadToS3(compressedBuffer, `original/${uniqueFileName}.jpeg`, 'image/jpeg');
+    const originalUrl = await this.uploadToS3(
+      compressedBuffer,
+      `original/${uniqueFileName}.jpeg`,
+      'image/jpeg',
+    );
 
     // Resizing all in parallel for better performance
     const resizedImages: ResizedImageDto[] = await Promise.all(
-      parsedSizes.map(async (size) => this.resizeAndUpload(compressedBuffer, size, uniqueFileName))
+      parsedSizes.map(async (size) =>
+        this.resizeAndUpload(compressedBuffer, size, uniqueFileName),
+      ),
     );
 
     return {
@@ -58,12 +78,23 @@ export class ImageService {
     };
   }
 
-  private async resizeAndUpload(buffer: Buffer, size: { width: number, height: number }, uniqueFileName: string): Promise<ResizedImageDto> {
+  private async resizeAndUpload(
+    buffer: Buffer,
+    size: { width: number; height: number },
+    uniqueFileName: string,
+  ): Promise<ResizedImageDto> {
     const resizedBuffer = await sharp(buffer)
-      .resize(size.width, size.height, { fit: sharp.fit.cover, position: sharp.strategy.entropy })
+      .resize(size.width, size.height, {
+        fit: sharp.fit.cover,
+        position: sharp.strategy.entropy,
+      })
       .toBuffer();
 
-    const resizedUrl = await this.uploadToS3(resizedBuffer, `${size.width}x${size.height}/${uniqueFileName}.jpeg`, 'image/jpeg');
+    const resizedUrl = await this.uploadToS3(
+      resizedBuffer,
+      `${size.width}x${size.height}/${uniqueFileName}.jpeg`,
+      'image/jpeg',
+    );
 
     return {
       width: size.width,
@@ -72,7 +103,11 @@ export class ImageService {
     };
   }
 
-  private async uploadToS3(buffer: Buffer, key: string, mimeType: string): Promise<string> {
+  private async uploadToS3(
+    buffer: Buffer,
+    key: string,
+    mimeType: string,
+  ): Promise<string> {
     const params = {
       Bucket: process.env.S3_BUCKET_NAME,
       Key: key,
@@ -86,11 +121,15 @@ export class ImageService {
     return result.Location;
   }
 
-  private parseAndValidateSizes(sizes: string[]): { width: number, height: number }[] {
-    const parsedSizes = sizes.map(size => {
+  private parseAndValidateSizes(
+    sizes: string[],
+  ): { width: number; height: number }[] {
+    const parsedSizes = sizes.map((size) => {
       const [width, height] = size.split('x').map(Number);
       if (width > 1080 || height > 1080) {
-        throw new BadRequestException(`Invalid size: ${width}x${height}. Maximum allowed dimensions are 1080x1080.`);
+        throw new BadRequestException(
+          `Invalid size: ${width}x${height}. Maximum allowed dimensions are 1080x1080.`,
+        );
       }
       return { width, height };
     });

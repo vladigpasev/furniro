@@ -1,10 +1,17 @@
-import { Injectable, BadRequestException, ConflictException, NotFoundException, InternalServerErrorException, Logger } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  ConflictException,
+  NotFoundException,
+  InternalServerErrorException,
+  Logger,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, isValidObjectId, SortOrder } from 'mongoose';
 import { Product } from './product.schema';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { Category } from '../categories/category.schema';  // Импортираме категорията
+import { Category } from '../categories/category.schema'; // Импортираме категорията
 
 @Injectable()
 export class ProductService {
@@ -12,17 +19,21 @@ export class ProductService {
 
   constructor(
     @InjectModel('Product') private readonly productModel: Model<Product>,
-    @InjectModel('Category') private readonly categoryModel: Model<Category>  // Добавяме категорията
+    @InjectModel('Category') private readonly categoryModel: Model<Category>, // Добавяме категорията
   ) {}
 
   // Проверка дали дадена категория съществува
   private async validateCategoryExists(categoryId: string) {
     if (!isValidObjectId(categoryId)) {
-      throw new BadRequestException(`Invalid category ID format: ${categoryId}`);
+      throw new BadRequestException(
+        `Invalid category ID format: ${categoryId}`,
+      );
     }
     const categoryExists = await this.categoryModel.exists({ _id: categoryId });
     if (!categoryExists) {
-      throw new BadRequestException(`Category with ID ${categoryId} does not exist`);
+      throw new BadRequestException(
+        `Category with ID ${categoryId} does not exist`,
+      );
     }
   }
 
@@ -43,7 +54,10 @@ export class ProductService {
     }
   }
 
-  async updateProduct(id: string, updateData: UpdateProductDto): Promise<Product> {
+  async updateProduct(
+    id: string,
+    updateData: UpdateProductDto,
+  ): Promise<Product> {
     this.logger.log(`Updating product with ID: ${id}`);
 
     if (!isValidObjectId(id)) {
@@ -56,7 +70,9 @@ export class ProductService {
       await this.validateCategoryExists(updateData.category);
     }
 
-    const updatedProduct = await this.productModel.findByIdAndUpdate(id, updateData, { new: true }).exec();
+    const updatedProduct = await this.productModel
+      .findByIdAndUpdate(id, updateData, { new: true })
+      .exec();
     if (!updatedProduct) {
       this.logger.warn(`Product with ID ${id} not found`);
       throw new NotFoundException(`Product with ID ${id} not found`);
@@ -66,13 +82,15 @@ export class ProductService {
   }
 
   async getAllProducts(
-    page: number = 1, 
-    limit: number = 10, 
-    categories?: string[], 
-    sortBy: string = 'createdAt', 
-    sortOrder: 'asc' | 'desc' = 'desc'
-  ): Promise<{ products: Product[], totalCount: number }> {
-    this.logger.log(`Fetching products, page: ${page}, limit: ${limit}, categories: ${categories}, sortBy: ${sortBy}, sortOrder: ${sortOrder}`);
+    page: number = 1,
+    limit: number = 10,
+    categories?: string[],
+    sortBy: string = 'createdAt',
+    sortOrder: 'asc' | 'desc' = 'desc',
+  ): Promise<{ products: Product[]; totalCount: number }> {
+    this.logger.log(
+      `Fetching products, page: ${page}, limit: ${limit}, categories: ${categories}, sortBy: ${sortBy}, sortOrder: ${sortOrder}`,
+    );
 
     if (page < 1 || limit < 1) {
       this.logger.error('Invalid pagination values');

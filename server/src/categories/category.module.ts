@@ -8,10 +8,10 @@ import { ProductsModule } from '../products/products.module'; // Импорти�
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'Category', schema: CategorySchema }]),
-    forwardRef(() => ProductsModule),  // Използваме forwardRef, за да избегнем цикличната зависимост
+    forwardRef(() => ProductsModule), // Използваме forwardRef, за да избегнем цикличната зависимост
   ],
   controllers: [CategoryController],
   providers: [CategoryService],
-  exports: [CategoryService, MongooseModule],  // Експортираме модела и услугата за употреба в други модули
+  exports: [CategoryService, MongooseModule], // Експортираме модела и услугата за употреба в други модули
 })
 export class CategoryModule {}

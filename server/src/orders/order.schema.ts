@@ -24,7 +24,11 @@ export const OrderSchema = new Schema(
   {
     products: [
       {
-        product: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+        product: {
+          type: Schema.Types.ObjectId,
+          ref: 'Product',
+          required: true,
+        },
         quantity: { type: Number, required: true, min: 1 },
         unit_price: { type: Number, required: true },
       },
@@ -40,5 +44,5 @@ export const OrderSchema = new Schema(
     email: { type: String, required: true, match: /\S+@\S+\.\S+/ },
     additional_info: { type: String, maxlength: 1024 },
   },
-  { timestamps: true }
+  { timestamps: true },
 );

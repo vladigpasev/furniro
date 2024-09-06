@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException, Inject, forwardRef } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  Inject,
+  forwardRef,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { Order } from './order.schema';
@@ -11,7 +16,8 @@ export class OrderService {
   constructor(
     @InjectModel('Order') private readonly orderModel: Model<Order>,
     @InjectModel('Product') private readonly productModel: Model<Product>,
-    @Inject(forwardRef(() => StripeService)) private readonly stripeService: StripeService,
+    @Inject(forwardRef(() => StripeService))
+    private readonly stripeService: StripeService,
   ) {}
 
   async createOrder(createOrderDto: CreateOrderDto): Promise<Order> {
@@ -19,7 +25,9 @@ export class OrderService {
       createOrderDto.products.map(async (item) => {
         const product = await this.productModel.findById(item.product);
         if (!product) {
-          throw new NotFoundException(`Product with ID ${item.product} not found`);
+          throw new NotFoundException(
+            `Product with ID ${item.product} not found`,
+          );
         }
 
         const discount = product.discount || 0;
@@ -30,7 +38,7 @@ export class OrderService {
           quantity: item.quantity,
           unit_price: unit_price,
         };
-      })
+      }),
     );
 
     const newOrder = new this.orderModel({
@@ -51,7 +59,10 @@ export class OrderService {
       throw new NotFoundException(`Invalid order ID: ${id}`);
     }
 
-    const order = await this.orderModel.findById(id).populate('products.product').exec();
+    const order = await this.orderModel
+      .findById(id)
+      .populate('products.product')
+      .exec();
     if (!order) {
       throw new NotFoundException(`Order with ID ${id} not found`);
     }

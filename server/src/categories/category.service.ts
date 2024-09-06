@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Category } from './category.schema';
@@ -10,7 +14,7 @@ import { Product } from '../products/product.schema'; // Импортираме 
 export class CategoryService {
   constructor(
     @InjectModel('Category') private categoryModel: Model<Category>,
-    @InjectModel('Product') private productModel: Model<Product> // Импортираме модела на продуктите
+    @InjectModel('Product') private productModel: Model<Product>, // Импортираме модела на продуктите
   ) {}
 
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
@@ -30,8 +34,13 @@ export class CategoryService {
     return category;
   }
 
-  async update(id: string, updateCategoryDto: UpdateCategoryDto): Promise<Category> {
-    const updatedCategory = await this.categoryModel.findByIdAndUpdate(id, updateCategoryDto, { new: true }).exec();
+  async update(
+    id: string,
+    updateCategoryDto: UpdateCategoryDto,
+  ): Promise<Category> {
+    const updatedCategory = await this.categoryModel
+      .findByIdAndUpdate(id, updateCategoryDto, { new: true })
+      .exec();
     if (!updatedCategory) {
       throw new NotFoundException(`Category with ID ${id} not found`);
     }
@@ -45,10 +54,12 @@ export class CategoryService {
     }
 
     // Проверяваме дали има продукти в тази категория
-    const productsInCategory = await this.productModel.find({ category: id }).exec();
+    const productsInCategory = await this.productModel
+      .find({ category: id })
+      .exec();
     if (productsInCategory.length > 0 && !force) {
       throw new BadRequestException(
-        `Cannot delete category with ID ${id} because there are products in this category. Use force delete to delete both the category and its products.`
+        `Cannot delete category with ID ${id} because there are products in this category. Use force delete to delete both the category and its products.`,
       );
     }
 

@@ -47,7 +47,10 @@ export class MailOffersService {
   async removeEmailFromMailchimp(email: string) {
     try {
       const subscriberHash = this.getSubscriberHash(email);
-      const response = await mailchimp.lists.deleteListMember('YOUR_LIST_ID', subscriberHash);
+      const response = await mailchimp.lists.deleteListMember(
+        'YOUR_LIST_ID',
+        subscriberHash,
+      );
       console.log('Mailchimp response:', response);
     } catch (error) {
       console.error('Error removing email from Mailchimp:', error);

@@ -1,11 +1,19 @@
 // src/orders/dto/create-order.dto.ts
-import { IsString, IsNotEmpty, IsArray, MinLength, MaxLength, Matches, IsOptional } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsArray,
+  MinLength,
+  MaxLength,
+  Matches,
+  IsOptional,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateOrderDto {
   @ApiProperty({
     description: 'Array of products with quantity',
-    example: [{ product: '64e73458dfb1a820b5b47e07', quantity: 2 }]
+    example: [{ product: '64e73458dfb1a820b5b47e07', quantity: 2 }],
   })
   @IsArray()
   @IsNotEmpty()
@@ -28,7 +36,11 @@ export class CreateOrderDto {
   @MaxLength(256)
   last_name: string;
 
-  @ApiProperty({ description: 'Company name', example: 'Acme Corp', required: false })
+  @ApiProperty({
+    description: 'Company name',
+    example: 'Acme Corp',
+    required: false,
+  })
   @IsString()
   @IsOptional()
   @MinLength(2)
@@ -49,7 +61,10 @@ export class CreateOrderDto {
   @MaxLength(256)
   city: string;
 
-  @ApiProperty({ description: 'Address of the customer', example: '123 Main St' })
+  @ApiProperty({
+    description: 'Address of the customer',
+    example: '123 Main St',
+  })
   @IsString()
   @IsNotEmpty()
   @MinLength(2)
@@ -59,7 +74,9 @@ export class CreateOrderDto {
   @ApiProperty({ description: 'Postal code', example: '1000' })
   @IsString()
   @IsNotEmpty()
-  @Matches(/^[0-9]{4}$/, { message: 'Postal code must be a 4-digit number for Bulgaria' })
+  @Matches(/^[0-9]{4}$/, {
+    message: 'Postal code must be a 4-digit number for Bulgaria',
+  })
   postal_code: string;
 
   @ApiProperty({ description: 'Phone number', example: '+359888123456' })
@@ -68,12 +85,19 @@ export class CreateOrderDto {
   @Matches(/^\+?[\d\s]{10,15}$/, { message: 'Invalid phone number format' })
   phone_number: string;
 
-  @ApiProperty({ description: 'Email address', example: 'john.doe@example.com' })
+  @ApiProperty({
+    description: 'Email address',
+    example: 'john.doe@example.com',
+  })
   @IsNotEmpty()
   @IsString()
   email: string;
 
-  @ApiProperty({ description: 'Additional information', required: false, example: 'Leave at the front door' })
+  @ApiProperty({
+    description: 'Additional information',
+    required: false,
+    example: 'Leave at the front door',
+  })
   @IsString()
   @IsOptional()
   @MaxLength(1024)

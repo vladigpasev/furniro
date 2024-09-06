@@ -9,7 +9,7 @@ import { ProductsModule } from '../products/products.module';
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'Review', schema: ReviewSchema }]),
-    forwardRef(() => ProductsModule),  // Свързваме модулите
+    forwardRef(() => ProductsModule), // Свързваме модулите
   ],
   controllers: [ReviewController],
   providers: [ReviewService],

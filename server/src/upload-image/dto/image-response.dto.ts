@@ -1,5 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsNotEmpty, IsString, ArrayMaxSize, Matches } from 'class-validator';
+import {
+  IsArray,
+  IsNotEmpty,
+  IsString,
+  ArrayMaxSize,
+  Matches,
+} from 'class-validator';
 
 export class ResizedImageDto {
   @ApiProperty({ description: 'Width of the resized image', example: 381 })
@@ -16,7 +22,10 @@ export class ResizedImageDto {
 }
 
 export class ImageResponseDto {
-  @ApiProperty({ description: 'URL of the original image', example: 'https://example.com/original/image.jpeg' })
+  @ApiProperty({
+    description: 'URL of the original image',
+    example: 'https://example.com/original/image.jpeg',
+  })
   original: string;
 
   @ApiProperty({
@@ -39,11 +48,15 @@ export class UploadImagesDto {
   files: any[];
 
   @ApiProperty({
-    description: 'Comma-separated list of image sizes to generate in the format WxH (e.g., "100x100,200x200")',
+    description:
+      'Comma-separated list of image sizes to generate in the format WxH (e.g., "100x100,200x200")',
     example: '100x100,200x200',
   })
   @IsString()
-  @Matches(/^(\d+x\d+)(,\d+x\d+)*$/, { message: 'Sizes must be in the format "WxH", comma-separated (e.g., "100x100,200x200")' })
+  @Matches(/^(\d+x\d+)(,\d+x\d+)*$/, {
+    message:
+      'Sizes must be in the format "WxH", comma-separated (e.g., "100x100,200x200")',
+  })
   @IsNotEmpty({ message: 'Sizes are required' })
   @ArrayMaxSize(5, { message: 'You can provide up to 5 sizes per image' }) // Limit the number of sizes per image
   sizes: string;

@@ -6,7 +6,9 @@ import { MailOffer, MailOfferSchema } from './mail-offers.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: MailOffer.name, schema: MailOfferSchema }]),
+    MongooseModule.forFeature([
+      { name: MailOffer.name, schema: MailOfferSchema },
+    ]),
   ],
   controllers: [MailOffersController],
   providers: [MailOffersService],

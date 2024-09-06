@@ -1,4 +1,13 @@
-import { Controller, Post, Body, Req, Res, Headers, HttpCode, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Req,
+  Res,
+  Headers,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { StripeService } from './stripe.service';
 import { CreateOrderDto } from '../orders/dto/create-order.dto';
 import { Request, Response } from 'express';
@@ -14,11 +23,18 @@ export class StripeController {
   ) {}
 
   @Post('create-checkout-session')
-  async createCheckoutSession(@Body() createOrderDto: CreateOrderDto, @Res() res: Response) {
+  async createCheckoutSession(
+    @Body() createOrderDto: CreateOrderDto,
+    @Res() res: Response,
+  ) {
     const successUrl = this.configService.get<string>('FRONTEND_SUCCESS_URL');
     const cancelUrl = this.configService.get<string>('FRONTEND_CANCEL_URL');
 
-    const session = await this.stripeService.createCheckoutSession(createOrderDto, successUrl, cancelUrl);
+    const session = await this.stripeService.createCheckoutSession(
+      createOrderDto,
+      successUrl,
+      cancelUrl,
+    );
     res.json({ id: session.id, url: session.url });
   }
 

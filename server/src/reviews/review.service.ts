@@ -1,5 +1,9 @@
 // src/reviews/review.service.ts
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, isValidObjectId } from 'mongoose';
 import { Review } from './review.schema';
@@ -19,7 +23,9 @@ export class ReviewService {
     }
     const productExists = await this.productModel.exists({ _id: productId });
     if (!productExists) {
-      throw new NotFoundException(`Product with ID ${productId} does not exist`);
+      throw new NotFoundException(
+        `Product with ID ${productId} does not exist`,
+      );
     }
   }
 

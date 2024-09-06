@@ -9,8 +9,11 @@ export interface Review extends Document {
   updatedAt?: Date;
 }
 
-export const ReviewSchema = new Schema({
-  value: { type: Number, required: true, min: 1, max: 5 },
-  comment: { type: String, minlength: 2, maxlength: 256 },
-  product: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
-}, { timestamps: true });
+export const ReviewSchema = new Schema(
+  {
+    value: { type: Number, required: true, min: 1, max: 5 },
+    comment: { type: String, minlength: 2, maxlength: 256 },
+    product: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+  },
+  { timestamps: true },
+);

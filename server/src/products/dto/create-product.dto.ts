@@ -1,5 +1,17 @@
 // src/products/dto/create-product.dto.ts
-import { IsString, IsNumber, IsOptional, IsNotEmpty, IsBoolean, IsInt, Min, Max, MinLength, MaxLength, IsArray } from 'class-validator';
+import {
+  IsString,
+  IsNumber,
+  IsOptional,
+  IsNotEmpty,
+  IsBoolean,
+  IsInt,
+  Min,
+  Max,
+  MinLength,
+  MaxLength,
+  IsArray,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateProductDto {
@@ -105,5 +117,5 @@ export class CreateProductDto {
   })
   @IsString()
   @IsNotEmpty()
-  category: string;  // Ново поле за категорията
+  category: string; // Ново поле за категорията
 }

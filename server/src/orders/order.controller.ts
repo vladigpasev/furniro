@@ -12,14 +12,22 @@ export class OrderController {
 
   @Get()
   @ApiOperation({ summary: 'Retrieve all orders' })
-  @ApiResponse({ status: 200, description: 'Orders retrieved successfully', type: [OrderSwagger] })
+  @ApiResponse({
+    status: 200,
+    description: 'Orders retrieved successfully',
+    type: [OrderSwagger],
+  })
   async getAllOrders(): Promise<Order[]> {
     return this.orderService.getAllOrders();
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Get order by ID' })
-  @ApiResponse({ status: 200, description: 'Order retrieved successfully', type: OrderSwagger })
+  @ApiResponse({
+    status: 200,
+    description: 'Order retrieved successfully',
+    type: OrderSwagger,
+  })
   @ApiResponse({ status: 404, description: 'Order not found' })
   async getOrderById(@Param('id') id: string): Promise<Order> {
     return this.orderService.getOrderById(id);
