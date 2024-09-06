@@ -1,9 +1,8 @@
-// src/categories/category.controller.ts
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiQuery } from '@nestjs/swagger';
 
 @ApiTags('categories')
 @Controller('categories')
@@ -31,7 +30,8 @@ export class CategoryController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.categoryService.remove(id);
+  @ApiQuery({ name: 'force', required: false, description: 'Force delete the category and its products', type: Boolean })
+  remove(@Param('id') id: string, @Query('force') force: boolean = false) {
+    return this.categoryService.remove(id, force);
   }
 }

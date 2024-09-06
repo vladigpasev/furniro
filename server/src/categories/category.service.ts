@@ -1,14 +1,17 @@
-// src/categories/category.service.ts
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Category } from './category.schema';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { Product } from '../products/product.schema'; // Импортираме Product
 
 @Injectable()
 export class CategoryService {
-  constructor(@InjectModel('Category') private categoryModel: Model<Category>) {}
+  constructor(
+    @InjectModel('Category') private categoryModel: Model<Category>,
+    @InjectModel('Product') private productModel: Model<Product> // Импортираме модела на продуктите
+  ) {}
 
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
     const newCategory = new this.categoryModel(createCategoryDto);
@@ -35,10 +38,25 @@ export class CategoryService {
     return updatedCategory;
   }
 
-  async remove(id: string): Promise<void> {
-    const result = await this.categoryModel.findByIdAndDelete(id).exec();
-    if (!result) {
+  async remove(id: string, force: boolean = false): Promise<void> {
+    const category = await this.categoryModel.findById(id).exec();
+    if (!category) {
       throw new NotFoundException(`Category with ID ${id} not found`);
     }
+
+    // Проверяваме дали има продукти в тази категория
+    const productsInCategory = await this.productModel.find({ category: id }).exec();
+    if (productsInCategory.length > 0 && !force) {
+      throw new BadRequestException(
+        `Cannot delete category with ID ${id} because there are products in this category. Use force delete to delete both the category and its products.`
+      );
+    }
+
+    // Ако има продукти и е зададено force, изтриваме и продуктите
+    if (force) {
+      await this.productModel.deleteMany({ category: id }).exec();
+    }
+
+    await this.categoryModel.findByIdAndDelete(id).exec();
   }
 }
