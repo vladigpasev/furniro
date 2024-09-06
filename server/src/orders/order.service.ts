@@ -1,4 +1,3 @@
-// src/orders/order.service.ts
 import { Injectable, NotFoundException, Inject, forwardRef } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
@@ -15,7 +14,6 @@ export class OrderService {
     @Inject(forwardRef(() => StripeService)) private readonly stripeService: StripeService,
   ) {}
 
-  // Create an order after the Stripe webhook confirms payment
   async createOrder(createOrderDto: CreateOrderDto): Promise<Order> {
     const productsWithPrices = await Promise.all(
       createOrderDto.products.map(async (item) => {
@@ -38,40 +36,16 @@ export class OrderService {
     const newOrder = new this.orderModel({
       ...createOrderDto,
       products: productsWithPrices,
-      payment_status: 'pending', // Initial payment status is pending
+      payment_status: 'pending',
     });
 
     return newOrder.save();
   }
 
-  // Create an order from the Stripe webhook after payment confirmation
-  async createOrderFromWebhook(session: any): Promise<Order> {
-    const orderData: CreateOrderDto = {
-      products: [], // Products can be populated from session or metadata
-      first_name: session.metadata.first_name,
-      last_name: session.metadata.last_name,
-      email: session.metadata.email,
-      country: '', // Add as required
-      city: '',
-      address: '',
-      postal_code: '',
-      phone_number: '',
-    };
-
-    const newOrder = new this.orderModel({
-      ...orderData,
-      payment_status: 'paid', // Payment status set to paid
-    });
-
-    return newOrder.save();
-  }
-
-  // Retrieve all orders
   async getAllOrders(): Promise<Order[]> {
     return this.orderModel.find().populate('products.product').exec();
   }
 
-  // Retrieve a single order by ID
   async getOrderById(id: string): Promise<Order> {
     if (!Types.ObjectId.isValid(id)) {
       throw new NotFoundException(`Invalid order ID: ${id}`);
@@ -84,7 +58,6 @@ export class OrderService {
     return order;
   }
 
-  // Delete an order by ID
   async deleteOrder(id: string): Promise<void> {
     const result = await this.orderModel.findByIdAndDelete(id).exec();
     if (!result) {
@@ -92,7 +65,6 @@ export class OrderService {
     }
   }
 
-  // Fetch product details from the product ID
   async getProductById(productId: string): Promise<Product> {
     return this.productModel.findById(productId).exec();
   }

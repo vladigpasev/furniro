@@ -1,4 +1,3 @@
-// src/stripe/stripe.controller.ts
 import { Controller, Post, Body, Req, Res, Headers, HttpCode, HttpStatus } from '@nestjs/common';
 import { StripeService } from './stripe.service';
 import { CreateOrderDto } from '../orders/dto/create-order.dto';
@@ -30,7 +29,7 @@ export class StripeController {
     @Headers('stripe-signature') signature: string,
     @Res() res: Response,
   ) {
-    const rawBody = req.body; // Raw body is passed by middleware (setup is necessary)
+    const rawBody = req.body;
 
     try {
       await this.stripeService.handleWebhook(Buffer.from(rawBody), signature);
