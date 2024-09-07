@@ -1,0 +1,222 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+button {
+    font-family: "Poppins", sans-serif;
+}
+
+header {
+    background-color: #fff;
+}
+
+.navbar {
+    padding: 30px 77px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.logo-svg {
+    width: 50px;
+    height: 32px;
+}
+
+.logo-name {
+    font-family: "Montserrat", sans-serif;
+}
+
+.logo span {
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 41.45px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 75px;
+    list-style: none;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+
+.nav-icons {
+    display: flex;
+    gap: 45px;
+}
+
+.person {
+    width: 23.33px;
+    height: 18.67px;
+}
+
+.search {
+    width: 22.17px;
+    height: 22.17px;
+    border: 2px;
+}
+
+.wish {
+    width: 23.33px;
+    height: 20.81px;
+}
+
+.cart {
+    width: 24.53px;
+    height: 22.06px;
+}
+
+.comparison-page {
+    height: 316px;
+    background: url('/public/shop.svg') no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-group {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+}
+
+.comparison-logo {
+    margin: 0 auto;
+}
+
+.page {
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 72px;
+}
+
+.comparison-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.from-home {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.to {
+    width: 20px;
+    height: 20px;
+}
+
+.comparison {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.comparison-results {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 34px;
+}
+
+.redirect {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+}
+
+.redirect span {
+    width: 223px;
+    height: 105px;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 35.42px;
+}
+
+.redirect button {
+    width: 115px;
+    height: 33px;
+    border: none;
+    background: none;
+    border-bottom: 2px solid #727272;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    color: #727272;
+}
+
+.all-results {
+    display: flex;
+    gap: 47px;
+}
+
+.compared-furniture {
+    display: flex;
+    flex-direction: column;
+}
+
+.compared-furniture-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 280px;
+    height: 177px;
+    border-radius: 10px;
+    background: #F9F1E7;
+}
+
+.add-product {
+    display: flex;
+    flex-direction: column;
+}
+
+.compared-furniture-name {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 30.36px;
+}
+
+.compared-furniture-prize {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+}
+
+.compared-furniture-reviews {
+    display: flex;
+}
+
+.review-with-numbers {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+}
+
+.review-with-stars {
+    width: 124px;
+    height: 20px;
+}

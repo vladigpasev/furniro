@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="details.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img class="logo-svg" src="/public/logo.svg" alt="Logo">
+                <span class="logo-name">Furniro</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#">
+                    <img class="person" src="/public/person.svg" alt="person">
+                </a>
+                <a href="#">
+                    <img class="search" src="/public/search.svg" alt="search">
+                </a>
+                <a href="#">
+                    <img class="wish" src="/public/wish.svg" alt="wish">
+                </a>
+                <a href="#">
+                    <img class="cart" src="/public/cart.svg" alt="cart">
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="current-item">
+        <div class="item-navigation">
+            <div class="navigations">
+                <span class="item-from-home">Home</span>
+                <span class="line1">
+                    <img src="/public/to.svg" alt="to">
+                </span>
+                <span class="item-shop">Shop</span>
+                <span class="line2">
+                    <img src="/public/to.svg" alt="to">
+                </span>
+            </div>
+            <p class="furniture-name">Asgaard sofa</p>
+        </div>
+    </section>
+
+    <section class="item">
+        <div class="item-images">
+
+            <div class="mini-images">
+                <ul>
+                    <li>
+                        <img src="/public/one.svg" alt="furniture-image">
+                    </li>
+                    <li>
+                        <img src="/public/two.svg" alt="furniture-image">
+                    </li>
+                    <li>
+                        <img src="/public/three.svg" alt="furniture-image">
+                    </li>
+                    <li>
+                        <img src="/public/four.svg" alt="furniture-image">
+                    </li>
+                </ul>
+            </div>
+
+            <div class="main-image">
+                <img src="/public/main-item.svg" alt="furniture-image">
+            </div>
+
+        </div>
+
+        <div class="item-info">
+
+            <div class="main-info">
+                <h1 class="item-name">Asgaard sofa</h1>
+                <span class="item-price">Rs. 250,000.00</span>
+
+                <div class="item-review">
+                    <div class="stars">
+                        star star star star
+                    </div>
+                    <div class="reviews-number">
+                        <span>5 Customer Review</span>
+                    </div>
+                </div>
+
+                <p class="item-description">
+                    Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted
+                    hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.
+                </p>
+
+                <div class="item-sizes">
+                    <span>Size</span>
+                    <div class="all-sizes">
+                        <button class="one-size">XS</button>
+                        <button class="one-size">L</button>
+                        <button class="one-size">XL</button>
+                    </div>
+                </div>
+
+                <div class="item-colors">
+                    <span>Color</span>
+                    <div class="all-colours">
+                        <button class="color"></button>
+                        <button class="color"></button>
+                        <button class="color"></button>
+                    </div>
+                </div>
+
+                <div class="item-options">
+
+                    <div class="counter-container">
+                        <button class="minus" onclick="decrease()">-</button>
+                        <span id="counter">1</span>
+                        <button class="plus" onclick="increase()">+</button>
+                    </div>
+
+                    <button class="item-add">Add To Cart</button>
+                    <button class="item-compare">+ Compare</button>
+                </div>
+
+            </div>
+
+            <div class="secondary-info">
+
+                <div class="first-info">
+                    <span>SKU</span>
+                    <span>Category</span>
+                    <span>Tags</span>
+                    <span>Share</span>
+                </div>
+
+                <div class="second-info-dots">
+                    <span>:</span>
+                    <span>:</span>
+                    <span>:</span>
+                    <span>:</span>
+                </div>
+
+                <div class="third-info">
+                    <span>SS001</span>
+                    <span>Sofas</span>
+                    <span>Sofa, Chair, Home, Shop</span>
+                    <div class="share-options">
+                        <a href="">
+                            <img src="/public/facebook.svg" alt="facebook">
+                        </a>
+
+                        <a href="">
+                            <img src="/public/linkedin.svg" alt="linkedin">
+                        </a>
+
+                        <a href="">
+                            <img src="/public/twitter.svg" alt="twitter">
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="furniture-description">
+
+        <div class="information-options">
+            <span class="description-span">Description</span>
+            <span class="span">Additional Information</span>
+            <span class="span">Reviews [5]</span>
+        </div>
+
+        <div class="changing-information">
+            <p>Embodying the raw, wayward spirit of rock ‘n’ roll, the Kilburn portable active stereo speaker takes the unmistakable look and sound of Marshall, unplugs the chords, and takes the show on the road.</p>
+            <p>Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences while the guitar-influenced leather strap enables easy and stylish travel.</p>
+        </div>
+
+        <div class="coach-images">
+            <div class="coach">
+                <img src="/public/coach1.svg" alt="coach1">
+            </div>
+
+            <div class="coach">
+                <img src="/public/coach2.svg" alt="coach2">
+            </div>
+
+        </div>
+    </section>
+
+    <section class="related-products">
+        <div class="container">
+            <h1 class="related-products-heading">Related Products</h1>
+            <div class="products-list">
+                <div class="product-card">
+                    <img class="product-image" src="/public/table.svg" alt="table">
+                    <div class="details">
+                        <h3 class="product-name">Syltherine</h3>
+                        <p class="description">Stylish cafe chair</p>
+                        <div class="price">
+                            <span class="real-price">Rp 2.500.000</span>
+                            <span style="text-decoration-line: line-through;" class="discount">Rp 3.500.000</span>
+                        </div>
+                        <div class="percents">
+                            <span>-20%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img class="product-image" src="/public/table.svg" alt="table">
+                    <div class="details">
+                        <h3 class="product-name">Syltherine</h3>
+                        <p class="description">Stylish cafe chair</p>
+                        <div class="price">
+                            <span class="real-price">Rp 2.500.000</span>
+                        </div>
+                        <div class="new">
+                            <span>New</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img class="product-image" src="/public/table.svg" alt="table">
+                    <div class="details">
+                        <h3 class="product-name">Syltherine</h3>
+                        <p class="description">Stylish cafe chair</p>
+                        <div class="price">
+                            <span class="real-price">Rp 2.500.000</span>
+                            <span style="text-decoration-line: line-through;" class="discount">Rp 3.500.000</span>
+                        </div>
+                        <div class="percents">
+                            <span>-20%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img class="product-image" src="/public/table.svg" alt="table">
+                    <div class="details">
+                        <h3 class="product-name">Syltherine</h3>
+                        <p class="description">Stylish cafe chair</p>
+                        <div class="price">
+                            <span class="real-price">Rp 2.500.000</span>
+                            <span style="text-decoration-line: line-through;" class="discount">Rp 3.500.000</span>
+                        </div>
+                        <div class="percents">
+                            <span>-20%</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="show2">
+                <button class="button-show">Show More</button>
+            </div>
+    </section>
+
+    <footer>
+        <div class="footer">
+          <div class="footer-column">
+            <h2 class="footer-name">Furniro.</h2>
+            <p class="address">400 University Drive Suite 200 Coral <br> Gables,<br>FL 33134 USA</p>
+          </div>
+    
+          <div class="footer-column">
+            <h3 class="footer-heading">Links</h3>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Shop</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+    
+          <div class="footer-column">
+            <h3 class="footer-heading">Help</h3>
+            <ul>
+              <li><a href="#">Payment Options</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">Privacy Policies</a></li>
+            </ul>
+          </div>
+    
+          <div class="footer-column">
+            <h3 class="footer-heading">Newsletter</h3>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Enter Your Email Address">
+              <button type="submit">SUBSCRIBE</button>
+            </form>
+          </div>
+        </div>
+    
+        <div class="bottom-footer">
+          <p class="bottom-p">2023 Furniro. All rights reserved</p>
+        </div>
+      </footer>
+
+</body>
+
+</html>
+
+<script>
+    let count = 0;
+
+    function increase() {
+        count++;
+        document.getElementById("counter").innerText = count;
+    }
+
+    function decrease() {
+        count--;
+        document.getElementById("counter").innerText = count;
+    }
+
+</script>

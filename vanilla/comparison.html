@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="comparison.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img class="logo-svg" src="/public/logo.svg" alt="Logo">
+                <span class="logo-name">Furniro</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#">
+                    <img class="person" src="/public/person.svg" alt="person">
+                </a>
+                <a href="#">
+                    <img class="search" src="/public/search.svg" alt="search">
+                </a>
+                <a href="#">
+                    <img class="wish" src="/public/wish.svg" alt="wish">
+                </a>
+                <a href="#">
+                    <img class="cart" src="/public/cart.svg" alt="cart">
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="comparison-page">
+        <div class="text-group">
+            <img class="comparison-logo" src="/public/page-logo.svg" alt="logo">
+            <h1 class="page">Product Comparison</h1>
+            <div class="comparison-navigation">
+                <span class="from-home">Home</span>
+                <span class="to">
+                    <img src="/public/to.svg" alt="to">
+                </span>
+                <span class="comparison">Comparison</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-results">
+        <div class="redirect">
+            <span>Go to Product page for more Products</span>
+            <button>View More</button>
+        </div>
+
+        <div class="all-results">
+
+            <div class="compared-furniture">
+                <div class="compared-furniture-image">
+                    <img src="/public/image-compare2.svg" alt="image">
+                </div>
+                <span class="compared-furniture-name">Asgaard Sofa</span>
+                <span class="compared-furniture-prize">Rs. 250,000.00</span>
+
+                <div class="compared-furniture-reviews">
+
+                    <div class="review-with-numbers">
+                        <span>4.7</span>
+                    </div>
+
+                    <div class="review-with-stars">
+                        <span>star star star</span>
+                    </div>
+
+                    <div class="reviews-number">
+                        <span>204 Reviews</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="compared-furniture">
+                <div class="compared-furniture-image">
+                    <img src="/public/image-compare.svg" alt="image">
+                </div>
+                <span class="compared-furniture-name">Outdoor Sofa Set</span>
+                <span class="compared-furniture-prize">Rs. 250,000.00</span>
+
+                <div class="compared-furniture-reviews">
+
+                    <div class="review-with-numbers">
+                        <span>4.7</span>
+                    </div>
+
+                    <div class="review-with-stars">
+                        <span>star star star</span>
+                    </div>
+
+                    <div class="reviews-number">
+                        <span>204 Reviews</span>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+
+        <div class="add-product">
+            <span>Add A Product</span>
+            <select class="add-select" id="dropdown" name="options">
+                <option value="" disabled selected>Choose a Product</option>
+                <option value="option1">Sofa</option>
+                <option value="option2">Chair</option>
+            </select>
+        </div>
+    </section>
+    
+</body>
+</html>

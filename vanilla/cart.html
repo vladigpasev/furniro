@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img class="logo-svg" src="/public/logo.svg" alt="Logo">
+                <span class="logo-name">Furniro</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#">
+                    <img class="person" src="/public/person.svg" alt="person">
+                </a>
+                <a href="#">
+                    <img class="search" src="/public/search.svg" alt="search">
+                </a>
+                <a href="#">
+                    <img class="wish" src="/public/wish.svg" alt="wish">
+                </a>
+                <a href="#">
+                    <img class="cart" src="/public/cart.svg" alt="cart">
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="cart-page">
+        <div class="text-group">
+            <img class="cart-logo" src="/public/page-logo.svg" alt="logo">
+            <h1 class="page">Cart</h1>
+            <div class="cart-navigation">
+                <span class="from-home">Home</span>
+                <span class="to">
+                    <img src="/public/to.svg" alt="to">
+                </span>
+                <span class="cart">Cart</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-information">
+
+        <div class="card-table">
+
+            <div class="separation-options">
+                <div class="empty-div"></div>
+                <div class="sep-product">Product</div>
+                <div class="sep-prize">Price</div>
+                <div class="sep-quantity">Quantity</div>
+                <div class="seb-subtotal">Subtotal</div>
+            </div>
+
+            <div class="all-card-items">
+                <div class="one-card-item">
+
+                    <div class="furn-cart-image">
+                        <img src="/public/cart-sofa.svg" alt="cart-furniture">
+                    </div>
+
+                    <div class="card-item-name">Asgaard sofa</div>
+                    <div class="card-item-prize">Rs. 250,000.00</div>
+                    <div class="card-item-quantity-out">
+                        <div class="card-item-quantity">1</div>
+                    </div>
+                    <div class="card-item-subtotal">Rs. 250,000.00</div>
+                    <div class="cart-item-trash">
+                        <img src="/public/trash.svg" alt="trash">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-totals">
+            <h1 class="cart-totals-heading">Cart Totals</h1>
+
+            <div class="totals-info">
+
+                <div class="subtotal-info">
+                    <span class="subtotal-span">Subtotal</span>
+                    <span class="subtotal-prize">Rs. 250,000.00</span>
+                </div>
+
+                <div class="total-info">
+                    <span class="total-span">Total</span>
+                    <span class="total-prize">Rs. 250,000.00</span>
+                </div>
+
+            </div>
+
+            <button class="check-out-btn">Check Out</button>
+
+        </div>
+    </section>
+
+    <section class="promise">
+        <div class="promises-list">
+            <div class="one-promise">
+                <div class="promise-icon">
+                    <img src="/public/prize.svg" alt="prize">
+                </div>
+                <div class="one-promise-text">
+                    <h3 class="promise-title">High Quality</h3>
+                    <p class="promise-description">crafted from top materials</p>
+                </div>
+            </div>
+
+            <div class="one-promise">
+                <div class="promise-icon">
+                    <img src="/public/guarantee.svg" alt="guarantee">
+                </div>
+                <div class="one-promise-text">
+                    <h3 class="promise-title">Warranty Protection</h3>
+                    <p class="promise-description">Over 2 years</p>
+                </div>
+            </div>
+
+            <div class="one-promise">
+                <div class="promise-icon">
+                    <img src="/public/shipping.svg" alt="shipping">
+                </div>
+                <div class="one-promise-text">
+                    <h3 class="promise-title">Free Shipping</h3>
+                    <p class="promise-description">Order over 150 $</p>
+                </div>
+            </div>
+
+            <div class="one-promise">
+                <div class="promise-icon">
+                    <img src="/public/customer-support.svg" alt="support">
+                </div>
+                <div class="one-promise-text">
+                    <h3 class="promise-title">24 / 7 Support</h3>
+                    <p class="promise-description">Dedicated support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer">
+          <div class="footer-column">
+            <h2 class="footer-name">Furniro.</h2>
+            <p class="address">400 University Drive Suite 200 Coral <br> Gables,<br>FL 33134 USA</p>
+          </div>
+    
+          <div class="footer-column">
+            <h3 class="footer-heading">Links</h3>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Shop</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+    
+          <div class="footer-column">
+            <h3 class="footer-heading">Help</h3>
+            <ul>
+              <li><a href="#">Payment Options</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">Privacy Policies</a></li>
+            </ul>
+          </div>
+    
+          <div class="footer-column">
+            <h3 class="footer-heading">Newsletter</h3>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Enter Your Email Address">
+              <button type="submit">SUBSCRIBE</button>
+            </form>
+          </div>
+        </div>
+    
+        <div class="bottom-footer">
+          <p class="bottom-p">2023 Furniro. All rights reserved</p>
+        </div>
+      </footer>
+    
+</body>
+</html>
