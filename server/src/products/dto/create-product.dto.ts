@@ -1,4 +1,3 @@
-// src/products/dto/create-product.dto.ts
 import {
   IsString,
   IsNumber,
@@ -117,5 +116,5 @@ export class CreateProductDto {
   })
   @IsString()
   @IsNotEmpty()
-  category: string; // Ново поле за категорията
+  category: string;
 }

@@ -21,7 +21,6 @@ export interface Order extends Document {
   sent_reminder_email: boolean;
 }
 
-
 export const OrderSchema = new Schema(
   {
     products: [
@@ -45,8 +44,8 @@ export const OrderSchema = new Schema(
     phone_number: { type: String, required: true, match: /^\+?[\d\s]{10,15}$/ },
     email: { type: String, required: true, match: /\S+@\S+\.\S+/ },
     additional_info: { type: String, maxlength: 1024 },
-    payed: { type: Boolean, default: false }, // New field
-    sent_reminder_email: { type: Boolean, default: false }, // New field
+    payed: { type: Boolean, default: false },
+    sent_reminder_email: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

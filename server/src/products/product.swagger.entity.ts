@@ -1,4 +1,3 @@
-// src/products/product.swagger.entity.ts
 import { ApiProperty } from '@nestjs/swagger';
 
 export class ProductSwagger {

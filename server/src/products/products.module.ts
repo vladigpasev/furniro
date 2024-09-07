@@ -14,6 +14,6 @@ import { ReviewsModule } from '../reviews/review.module';
   ],
   controllers: [ProductController],
   providers: [ProductService],
-  exports: [ProductService, MongooseModule], // Exporting ProductService
+  exports: [ProductService, MongooseModule],
 })
 export class ProductsModule {}

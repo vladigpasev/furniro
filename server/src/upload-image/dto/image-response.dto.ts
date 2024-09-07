@@ -44,7 +44,7 @@ export class UploadImagesDto {
   })
   @IsNotEmpty({ message: 'Files are required' })
   @IsArray()
-  @ArrayMaxSize(5, { message: 'You can upload up to 5 images' }) // Limit the number of images
+  @ArrayMaxSize(5, { message: 'You can upload up to 5 images' })
   files: any[];
 
   @ApiProperty({
@@ -58,6 +58,6 @@ export class UploadImagesDto {
       'Sizes must be in the format "WxH", comma-separated (e.g., "100x100,200x200")',
   })
   @IsNotEmpty({ message: 'Sizes are required' })
-  @ArrayMaxSize(5, { message: 'You can provide up to 5 sizes per image' }) // Limit the number of sizes per image
+  @ArrayMaxSize(5, { message: 'You can provide up to 5 sizes per image' })
   sizes: string;
 }

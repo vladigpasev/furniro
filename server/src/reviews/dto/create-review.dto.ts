@@ -1,4 +1,3 @@
-// src/reviews/dto/create-review.dto.ts
 import {
   IsString,
   IsInt,

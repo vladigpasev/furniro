@@ -18,7 +18,10 @@ export class CreateFeedbackDto {
   @Length(2, 256)
   subject: string;
 
-  @ApiProperty({ example: 'This is the message of the feedback', description: 'Feedback message' })
+  @ApiProperty({
+    example: 'This is the message of the feedback',
+    description: 'Feedback message',
+  })
   @IsNotEmpty()
   @Length(2, 2048)
   message: string;

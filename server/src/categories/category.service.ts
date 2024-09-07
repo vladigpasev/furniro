@@ -8,13 +8,13 @@ import { Model } from 'mongoose';
 import { Category } from './category.schema';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { Product } from '../products/product.schema'; // Импортираме Product
+import { Product } from '../products/product.schema';
 
 @Injectable()
 export class CategoryService {
   constructor(
     @InjectModel('Category') private categoryModel: Model<Category>,
-    @InjectModel('Product') private productModel: Model<Product>, // Импортираме модела на продуктите
+    @InjectModel('Product') private productModel: Model<Product>,
   ) {}
 
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
@@ -53,7 +53,6 @@ export class CategoryService {
       throw new NotFoundException(`Category with ID ${id} not found`);
     }
 
-    // Проверяваме дали има продукти в тази категория
     const productsInCategory = await this.productModel
       .find({ category: id })
       .exec();
@@ -63,7 +62,6 @@ export class CategoryService {
       );
     }
 
-    // Ако има продукти и е зададено force, изтриваме и продуктите
     if (force) {
       await this.productModel.deleteMany({ category: id }).exec();
     }

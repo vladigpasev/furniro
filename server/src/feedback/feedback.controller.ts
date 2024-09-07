@@ -17,7 +17,10 @@ export class FeedbackController {
 
   @Get()
   @ApiOperation({ summary: 'Retrieve all feedbacks' })
-  @ApiResponse({ status: 200, description: 'Feedback list retrieved successfully.' })
+  @ApiResponse({
+    status: 200,
+    description: 'Feedback list retrieved successfully.',
+  })
   async findAll() {
     return this.feedbackService.findAll();
   }

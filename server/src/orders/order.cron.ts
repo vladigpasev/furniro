@@ -28,33 +28,31 @@ export class OrderCron {
       }
 
       try {
-        const orderId = new Types.ObjectId(order._id).toString();
         const successUrl = `https://yourdomain.com/success`;
         const cancelUrl = `https://yourdomain.com/cancel`;
+        const discount = 3;
 
-        const createOrderDto = { ...order.toObject(), products: order.products };
-        const discount = 3; // 3% discount
-
-        // Pass the existing orderId to the createCheckoutSession method
         const session = await this.stripeService.createCheckoutSession(
-          createOrderDto,
+          { ...order.toObject(), products: order.products },
           successUrl,
           cancelUrl,
-          true, // exists = true, because the order already exists
           discount,
-          orderId // Pass the existing order ID
+          true,
+          order._id.toString(),
         );
 
         await this.mailService.sendMail(
           order.email,
           'Payment Reminder - Special Discount!',
           `Dear ${order.first_name}, please complete your payment and enjoy a 3% discount.`,
-          `<p>Dear <strong>${order.first_name}</strong>,<br>We noticed your order is still pending payment. Please complete your payment <a href="${session.url}">here</a> and enjoy an exclusive 3% discount.</p>`
+          `<p>Dear <strong>${order.first_name}</strong>,<br>We noticed your order is still pending payment. Please complete your payment <a href="${session.url}">here</a> and enjoy an exclusive 3% discount.</p>`,
         );
 
         await this.orderService.markReminderSent(order._id);
       } catch (error) {
-        this.logger.error(`Failed to process reminder for order ${order._id}: ${error.message}`);
+        this.logger.error(
+          `Failed to process reminder for order ${order._id}: ${error.message}`,
+        );
       }
     }
   }

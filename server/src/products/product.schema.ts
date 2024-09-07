@@ -1,4 +1,3 @@
-// src/products/product.schema.ts
 import { Schema, Document, Types } from 'mongoose';
 
 export interface Product extends Document {

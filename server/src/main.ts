@@ -6,19 +6,16 @@ import * as bodyParser from 'body-parser';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Set the global prefix for all routes
   app.setGlobalPrefix('api');
 
   const config = new DocumentBuilder()
     .setTitle('Furniro API')
     .setDescription('The Furniro API documentation')
     .setVersion('1.0')
-    //.addBearerAuth() // Add JWT or API key support if needed
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api-docs', app, document); // This can remain outside the '/api' prefix
-  // Use raw body middleware for Stripe webhook
+  SwaggerModule.setup('api-docs', app, document);
   app.use('/api/stripe/webhook', bodyParser.raw({ type: 'application/json' }));
   await app.listen(3000);
 }

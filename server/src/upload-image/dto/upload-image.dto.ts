@@ -13,11 +13,11 @@ export class UploadImagesDto {
     type: 'string',
     format: 'binary',
     description: 'Array of image files to be uploaded',
-    isArray: true, // Указваме, че ще качваме множество файлове
+    isArray: true,
   })
   @IsNotEmpty({ message: 'Files are required' })
   @IsArray()
-  @ArrayMaxSize(5, { message: 'You can upload up to 5 images' }) // Лимит на броя изображения
+  @ArrayMaxSize(5, { message: 'You can upload up to 5 images' })
   files: any[];
 
   @ApiProperty({
@@ -31,6 +31,6 @@ export class UploadImagesDto {
       'Sizes must be in the format "WxH", comma-separated (e.g., "100x100,200x200")',
   })
   @IsNotEmpty({ message: 'Sizes are required' })
-  @ArrayMaxSize(5, { message: 'You can provide up to 5 sizes per image' }) // Лимит на броя размери
+  @ArrayMaxSize(5, { message: 'You can provide up to 5 sizes per image' })
   sizes: string;
 }

@@ -55,9 +55,8 @@ export class ReviewController {
   @ApiOperation({ summary: 'Delete a review by ID' })
   @ApiResponse({ status: 200, description: 'Review successfully deleted' })
   @ApiResponse({ status: 404, description: 'Review not found' })
-  @HttpCode(204) // No Content response when successfully deleted
+  @HttpCode(204)
   async deleteReview(@Param('id') id: string): Promise<void> {
-    // Validate review ID and delete it
     if (!Types.ObjectId.isValid(id)) {
       throw new BadRequestException('Invalid review ID format');
     }

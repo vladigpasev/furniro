@@ -1,4 +1,3 @@
-// src/categories/dto/create-category.dto.ts
 import { IsString, IsOptional, MinLength, MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 

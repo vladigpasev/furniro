@@ -8,7 +8,7 @@ import { MailOffersModule } from './mailchimp/mail-offers.module';
 import { OrderModule } from './orders/order.module';
 import { StripeModule } from './stripe/stripe.module';
 import { ScheduleModule } from '@nestjs/schedule';
-import { MailModule } from './mail/mail.module'; // Import MailModule
+import { MailModule } from './mail/mail.module';
 import { FeedbackModule } from './feedback/feedback.module';
 
 @Module({
@@ -22,8 +22,8 @@ import { FeedbackModule } from './feedback/feedback.module';
     OrderModule,
     StripeModule,
     ScheduleModule.forRoot(),
-    MailModule, // Include MailModule
-    FeedbackModule
+    MailModule,
+    FeedbackModule,
   ],
 })
 export class AppModule {}

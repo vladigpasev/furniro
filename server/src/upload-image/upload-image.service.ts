@@ -10,7 +10,6 @@ export class ImageService {
   private readonly s3: S3Client;
 
   constructor() {
-    // Initialize S3 client once and reuse
     if (
       !process.env.AWS_REGION ||
       !process.env.AWS_ACCESS_KEY_ID ||
@@ -33,7 +32,6 @@ export class ImageService {
   ): Promise<ImageResponseDto> {
     const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
 
-    // Validating file type
     if (!validTypes.includes(file.mimetype)) {
       throw new BadRequestException(
         'Invalid file type. Only JPEG and PNG are allowed.',
@@ -48,7 +46,6 @@ export class ImageService {
 
     const uniqueFileName = uuidv4();
 
-    // Optimize original image
     const compressedBuffer = await sharp(file.buffer)
       .resize({
         width: 1080,
@@ -65,7 +62,6 @@ export class ImageService {
       'image/jpeg',
     );
 
-    // Resizing all in parallel for better performance
     const resizedImages: ResizedImageDto[] = await Promise.all(
       parsedSizes.map(async (size) =>
         this.resizeAndUpload(compressedBuffer, size, uniqueFileName),

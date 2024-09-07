@@ -1,4 +1,3 @@
-// src/products/product.controller.ts
 import {
   Controller,
   Get,
@@ -77,7 +76,7 @@ export class ProductController {
   async getAllProducts(
     @Query('page') page: number = 1,
     @Query('limit') limit: number = 10,
-    @Query('categories') categories?: string[], // Позволява масив от категории
+    @Query('categories') categories?: string[],
     @Query('sortBy') sortBy: string = 'createdAt',
     @Query('sortOrder') sortOrder: 'asc' | 'desc' = 'desc',
   ): Promise<{ products: Product[]; totalCount: number }> {

@@ -1,4 +1,3 @@
-// src/reviews/review.module.ts
 import { Module, forwardRef } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ReviewSchema } from './review.schema';

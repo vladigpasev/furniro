@@ -1,4 +1,3 @@
-// src/reviews/review.schema.ts
 import { Schema, Document, Types } from 'mongoose';
 
 export interface Review extends Document {

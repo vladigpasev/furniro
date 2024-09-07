@@ -1,4 +1,3 @@
-// src/categories/category.schema.ts
 import { Schema, Document } from 'mongoose';
 
 export interface Category extends Document {

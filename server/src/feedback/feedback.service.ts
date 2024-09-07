@@ -9,18 +9,17 @@ import { MailService } from '../mail/mail.service';
 export class FeedbackService {
   constructor(
     @InjectModel(Feedback.name) private feedbackModel: Model<Feedback>,
-    private readonly mailService: MailService // Inject MailService
+    private readonly mailService: MailService,
   ) {}
 
   async create(createFeedbackDto: CreateFeedbackDto): Promise<Feedback> {
     const createdFeedback = new this.feedbackModel(createFeedbackDto);
     const feedback = await createdFeedback.save();
 
-    // Send an email notification after successful feedback creation
     await this.mailService.sendMail(
       createFeedbackDto.email,
       'Feedback Received',
-      `Dear ${createFeedbackDto.name},\n\nThank you for your feedback!\n\nBest regards,\nFurniro`
+      `Dear ${createFeedbackDto.name},\n\nThank you for your feedback!\n\nBest regards,\nFurniro`,
     );
 
     return feedback;

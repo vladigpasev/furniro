@@ -1,4 +1,3 @@
-// src/orders/order.swagger.entity.ts
 import { ApiProperty } from '@nestjs/swagger';
 
 export class OrderSwagger {

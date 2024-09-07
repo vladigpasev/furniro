@@ -7,7 +7,7 @@ import { ImageController } from './upload-image.controller';
 @Module({
   imports: [
     MulterModule.register({
-      storage: memoryStorage(), // This stores the file in memory
+      storage: memoryStorage(),
     }),
   ],
   controllers: [ImageController],
