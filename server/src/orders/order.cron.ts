@@ -15,7 +15,7 @@ export class OrderCron {
     private readonly stripeService: StripeService,
   ) {}
 
-  @Cron(CronExpression.EVERY_SECOND)
+  @Cron(CronExpression.EVERY_DAY_AT_2PM)
   async sendReminderEmails() {
     const orders = await this.orderService.getUnpaidOrders();
 
