@@ -48,21 +48,19 @@ To get the project running locally, follow the instructions below.
 
    ```plaintext
    MONGO_URL=
+   AWS_ACCESS_KEY_ID=
+   AWS_SECRET_ACCESS_KEY=
+   AWS_REGION=
+   S3_BUCKET_NAME=
+   STRIPE_SECRET_KEY=
+   STRIPE_WEBHOOK_SECRET=
+   FRONTEND_SUCCESS_URL=
+   FRONTEND_CANCEL_URL=
 
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-AWS_REGION=
-S3_BUCKET_NAME=
-
-STRIPE_SECRET_KEY=
-STRIPE_WEBHOOK_SECRET=
-FRONTEND_SUCCESS_URL=
-FRONTEND_CANCEL_URL=
-
-SMTP_HOST=
-SMTP_PORT=
-SMTP_USER=
-SMTP_PASS=
+   SMTP_HOST=
+   SMTP_PORT=
+   SMTP_USER=
+   SMTP_PASS=
    ```
 
 4. Start the application:
@@ -175,9 +173,9 @@ SMTP_PASS=
 - **File Storage**: AWS S3 for image uploads
 - **Payments**: Stripe for secure payment integration
 - **Authentication**: JWT (JSON Web Token)
-- **Email Service**: Nodemailer (for sending newsletters and feedback emails)
+- **Email Service**: Nodemailer and Mailchimp (for sending newsletters and feedback emails)
 - **Documentation**: Swagger (API Documentation)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License
