@@ -39,24 +39,20 @@ export class StripeService {
         createOrderDto: CreateOrderDto,
         successUrl: string,
         cancelUrl: string,
-        exists: boolean = false, // Add the exists parameter with a default value
-        discount: number = 0, // New discount parameter
+        exists: boolean = false,
+        discount: number = 0, 
+        existingOrderId?: string // Add optional existingOrderId parameter
     ): Promise<Stripe.Checkout.Session> {
         const lineItems = await Promise.all(
             createOrderDto.products.map(async (item) => {
-                // Convert product ID from string to ObjectId
                 const productId = new Types.ObjectId(item.product);
-
                 const product = await this.orderService.getProductById(productId);
                 if (!product) {
-                    throw new BadRequestException(
-                        `Product with ID ${item.product} not found`,
-                    );
+                    throw new BadRequestException(`Product with ID ${item.product} not found`);
                 }
 
-                // Apply the additional discount (if any)
                 const productDiscount = product.discount || 0;
-                const totalDiscount = productDiscount + discount; // Combine product discount and additional discount
+                const totalDiscount = productDiscount + discount;
                 const unit_price = product.price * ((100 - totalDiscount) / 100);
 
                 return {
@@ -70,7 +66,7 @@ export class StripeService {
                                 product.cover_photo,
                             ],
                         },
-                        unit_amount: Math.round(unit_price * 100), // Stripe expects the price in cents
+                        unit_amount: Math.round(unit_price * 100),
                     },
                     quantity: item.quantity,
                 };
@@ -79,17 +75,14 @@ export class StripeService {
 
         let orderId: string;
 
-        // Only create an order in the database if exists is false
-        if (!exists) {
-            // Create and save the order with payed = false
+        // If the order already exists, use its ID, otherwise create a new order
+        if (exists && existingOrderId) {
+            orderId = existingOrderId; // Use the provided existing order ID
+        } else {
             const savedOrder = await this.orderService.createOrder(createOrderDto);
             orderId = savedOrder._id.toString();
-        } else {
-            // Use a dummy order ID or generate one if exists is true
-            orderId = 'dummy_order_id';
         }
 
-        // Create the Stripe Checkout session
         const session = await this.stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: lineItems,
@@ -98,7 +91,7 @@ export class StripeService {
             cancel_url: `${cancelUrl}`,
             customer_email: createOrderDto.email,
             metadata: {
-                order_id: orderId, // Store the order ID in metadata
+                order_id: orderId,
             },
         });
 
