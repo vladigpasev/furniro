@@ -560,7 +560,17 @@ header {
     }
   }
 
+  .product-card:hover > .card-overlay {
+    display: flex;
+  }
 
-
-
-
+  .card-overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 102;
+    display: none;
+  }

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparison</title>
-    <link rel="stylesheet" href="comparison.css">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="checkout.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
@@ -14,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 </head>
+
 <body>
 
     <header>
@@ -45,86 +47,124 @@
         </nav>
     </header>
 
-    <section class="comparison-page">
+    <section class="checkout-page">
         <div class="text-group">
-            <img class="comparison-logo" src="/public/page-logo.svg" alt="logo">
-            <h1 class="page">Product Comparison</h1>
-            <div class="comparison-navigation">
+            <img class="checkout-logo" src="/public/page-logo.svg" alt="logo">
+            <h1 class="page">Checkout</h1>
+            <div class="checkout-navigation">
                 <span class="from-home">Home</span>
                 <span class="to">
                     <img src="/public/to.svg" alt="to">
                 </span>
-                <span class="comparison">Comparison</span>
+                <span class="checkout">Checkout</span>
             </div>
         </div>
     </section>
 
-    <section class="comparison-results">
-        <div class="redirect">
-            <span>Go to Product page for more Products</span>
-            <button>View More</button>
+    <section class="checkout-section">
+        <div class="billing-details">
+            <h1>Billing details</h1>
+            <form>
+                <div class="name-info">
+
+                    <div class="first-name">
+                        <label for="first-name">First Name</label>
+                        <input class="name-input" type="text">
+                    </div>
+
+                    <div class="last-name">
+                        <label for="last-name">Last Name</label>
+                        <input class="name-input" type="text">
+                    </div>
+
+                </div>
+
+                <div class="company-name">
+                    <label for="company-name">Company Name (Optional)</label>
+                    <input class="bigger-input" type="text">
+                </div>
+
+                <div class="country">
+                    <label for="country/region">Country / Region</label>
+                    <select class="bigger-input" id="dropdown" name="options">
+                        <option value="" disabled selected>Sri Lanka</option>
+                        <option value="option1">Somewhere1</option>
+                        <option value="option2">Somewhere2</option>
+                    </select>
+                </div>
+
+                <div class="street-address">
+                    <label for="address">Street address</label>
+                    <input class="bigger-input" type="text">
+                </div>
+
+                <div class="town">
+                    <label for="town">Town / City</label>
+                    <input class="bigger-input" type="text">
+                </div>
+
+                <div class="province">
+                    <label for="province">Country / Region</label>
+                    <select class="bigger-input" id="dropdown" name="options">
+                        <option value="" disabled selected>Province</option>
+                        <option value="option1">Something1</option>
+                        <option value="option2">Something2</option>
+                    </select>
+                </div>
+
+                <div class="zip-code">
+                    <label for="zip-code">ZIP code</label>
+                    <input class="bigger-input" type="number">
+                </div>
+
+                <div class="phone">
+                    <label for="phone">Phone</label>
+                    <input class="bigger-input" type="number">
+                </div>
+
+                <div class="email">
+                    <label for="email">Email address</label>
+                    <input class="bigger-input" type="email">
+                </div>
+
+                <div class="additional-info">
+                    <input class="bigger-input" type="text" placeholder="Additional information">
+                </div>
+            </form>
         </div>
 
-        <div class="all-results">
+        <div>
+            <div class="more-info">
 
-            <div class="compared-furniture">
-                <div class="compared-furniture-image">
-                    <img src="/public/image-compare2.svg" alt="image">
+                <div class="first">
+                    <span>Product</span>
+                    <span>Subtotal</span>
                 </div>
-                <span class="compared-furniture-name">Asgaard Sofa</span>
-                <span class="compared-furniture-prize">Rs. 250,000.00</span>
-
-                <div class="compared-furniture-reviews">
-
-                    <div class="review-with-numbers">
-                        <span>4.7</span>
+    
+                <div class="second">
+                    <div class="second-name">
+                        <span>Asgaard sofa X 1</span>
                     </div>
-
-                    <div class="review-with-stars">
-                        <span>star star star</span>
-                    </div>
-
-                    <div class="reviews-number">
-                        <span>204 Review</span>
-                    </div>
-
+    
+                    <span>Rs. 250,000.00</span>
+                </div>
+    
+                <div class="third">
+                    <span class="total-subtotal">Subtotal</span>
+                    <span>Rs. 250,000.00</span>
+                </div>
+    
+                <div class="fourth">
+                    <span class="total-subtotal">Total</span>
+                    <span class="total-prize">Rs. 250,000.00</span>
                 </div>
             </div>
-
-            <div class="compared-furniture">
-                <div class="compared-furniture-image">
-                    <img src="/public/image-compare.svg" alt="image">
-                </div>
-                <span class="compared-furniture-name">Outdoor Sofa Set</span>
-                <span class="compared-furniture-prize">Rs. 250,000.00</span>
-
-                <div class="compared-furniture-reviews">
-
-                    <div class="review-with-numbers">
-                        <span>4.7</span>
-                    </div>
-
-                    <div class="review-with-stars">
-                        <span>star star star</span>
-                    </div>
-
-                    <div class="reviews-number">
-                        <span>204 Review</span>
-                    </div>
-                    
-                </div>
-            </div>
-
         </div>
 
-        <div class="add-product">
-            <span>Add A Product</span>
-            <select class="add-select" id="dropdown" name="options">
-                <option value="" disabled selected>Choose a Product</option>
-                <option value="option1">Sofa</option>
-                <option value="option2">Chair</option>
-            </select>
+        <div class="place-order">
+            <button>Place order</button>
         </div>
+
     </section>
 
     <section class="promise">
@@ -210,6 +250,7 @@
           <p class="bottom-p">2023 Furniro. All rights reserved</p>
         </div>
       </footer>
-    
+
 </body>
+
 </html>
