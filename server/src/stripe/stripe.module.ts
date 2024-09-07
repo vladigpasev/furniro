@@ -1,17 +1,18 @@
-// src/stripe/stripe.module.ts
 import { Module, forwardRef } from '@nestjs/common';
 import { StripeService } from './stripe.service';
-import { StripeController } from './stripe.controller';
+import { StripeController } from './stripe.controller'; // Ensure the controller is imported
 import { ConfigModule } from '@nestjs/config';
-import { OrderModule } from '../orders/order.module'; // Import OrderModule
+import { OrderModule } from '../orders/order.module';
+import { ProductsModule } from '../products/products.module';
 
 @Module({
   imports: [
     ConfigModule,
-    forwardRef(() => OrderModule), // Use forwardRef to prevent circular dependency
+    forwardRef(() => OrderModule),
+    ProductsModule,
   ],
   providers: [StripeService],
-  controllers: [StripeController],
+  controllers: [StripeController], // Ensure the controller is included here
   exports: [StripeService],
 })
 export class StripeModule {}

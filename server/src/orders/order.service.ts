@@ -8,7 +8,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { Order } from './order.schema';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { Product } from '../products/product.schema';
+import { ProductService } from '../products/product.service'; // Separated Product logic into ProductService
 import { StripeService } from '../stripe/stripe.service';
 import { MailService } from '../mail/mail.service';
 
@@ -16,7 +16,7 @@ import { MailService } from '../mail/mail.service';
 export class OrderService {
   constructor(
     @InjectModel('Order') private readonly orderModel: Model<Order>,
-    @InjectModel('Product') private readonly productModel: Model<Product>,
+    private readonly productService: ProductService, // Injected ProductService
     @Inject(forwardRef(() => StripeService))
     private readonly stripeService: StripeService,
     private readonly mailService: MailService,
@@ -24,33 +24,17 @@ export class OrderService {
 
   // Create a new order
   async createOrder(createOrderDto: CreateOrderDto): Promise<Order> {
-    const productsWithPrices = await Promise.all(
-      createOrderDto.products.map(async (item) => {
-        const product = await this.productModel.findById(item.product);
-        if (!product) {
-          throw new NotFoundException(`Product with ID ${item.product} not found`);
-        }
-
-        const discount = product.discount || 0;
-        const unit_price = product.price * ((100 - discount) / 100);
-
-        return {
-          product: product._id,
-          quantity: item.quantity,
-          unit_price,
-        };
-      }),
-    );
+    // Extracted product fetching logic into ProductService
+    const productsWithPrices = await this.productService.getProductsWithPrices(createOrderDto.products);
 
     const newOrder = new this.orderModel({
       ...createOrderDto,
       products: productsWithPrices,
-      payed: false, // Set the initial payed state to false
-      sent_reminder_email: false, // Set the reminder email status to false
+      payed: false,
+      sent_reminder_email: false,
     });
 
-    const savedOrder = await newOrder.save();
-    return savedOrder;
+    return newOrder.save();
   }
 
   // Retrieve all orders
@@ -78,11 +62,6 @@ export class OrderService {
     }
   }
 
-  // Get product by ID
-  async getProductById(productId: Types.ObjectId): Promise<Product> {
-    return this.productModel.findById(productId).exec();
-  }
-
   // Update the payment status of an order
   async updateOrderPaymentStatus(orderId: Types.ObjectId, payed: boolean): Promise<void> {
     const order = await this.orderModel.findById(orderId);
@@ -108,53 +87,5 @@ export class OrderService {
 
     order.sent_reminder_email = true;
     await order.save();
-  }
-
-  // Create a payment link using Stripe Checkout
-  async createPaymentLink(orderId: Types.ObjectId): Promise<string> {
-    const order = await this.getOrderById(orderId);
-
-    // Convert ObjectId in products to string for Stripe
-    const productsForCheckout = order.products.map((item) => ({
-      product: item.product.toString(), // Convert ObjectId to string
-      quantity: item.quantity,
-      unit_price: item.unit_price,
-    }));
-
-    // Prepare a compatible DTO for Stripe session
-    const createOrderDto: CreateOrderDto = {
-      ...order.toObject(), // Convert order to a plain object
-      products: productsForCheckout,
-    };
-
-    const session = await this.stripeService.createCheckoutSession(
-      createOrderDto, 
-      'success_url', 
-      'cancel_url'
-    );
-    return session.url;
-  }
-
-  // Send reminder emails for unpaid orders via cron job
-  async sendReminderEmails(): Promise<void> {
-    const orders = await this.getUnpaidOrders();
-
-    for (const order of orders) {
-      // Explicitly cast _id to ObjectId if necessary
-      const orderIdObject: Types.ObjectId = order._id as Types.ObjectId;
-
-      const paymentLink = await this.createPaymentLink(orderIdObject);
-
-      // Send the reminder email to the customer
-      await this.mailService.sendMail(
-        order.email,
-        'Payment Reminder',
-        `Dear ${order.first_name}, please complete your payment.`,
-        `<p>Dear <strong>${order.first_name}</strong>,<br>Please complete your payment <a href="${paymentLink}">here</a>.</p>`
-      );
-
-      // Mark the reminder as sent
-      await this.markReminderSent(orderIdObject);
-    }
   }
 }
