@@ -1,6 +1,7 @@
 import { Schema, Document, Types } from 'mongoose';
 
 export interface Order extends Document {
+  _id: Types.ObjectId; // Ensure _id is typed as ObjectId
   products: Array<{
     product: Types.ObjectId;
     quantity: number;
@@ -16,9 +17,10 @@ export interface Order extends Document {
   phone_number: string;
   email: string;
   additional_info?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  payed: boolean;
+  sent_reminder_email: boolean;
 }
+
 
 export const OrderSchema = new Schema(
   {
@@ -43,6 +45,8 @@ export const OrderSchema = new Schema(
     phone_number: { type: String, required: true, match: /^\+?[\d\s]{10,15}$/ },
     email: { type: String, required: true, match: /\S+@\S+\.\S+/ },
     additional_info: { type: String, maxlength: 1024 },
+    payed: { type: Boolean, default: false }, // New field
+    sent_reminder_email: { type: Boolean, default: false }, // New field
   },
   { timestamps: true },
 );
