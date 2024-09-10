@@ -135,3 +135,328 @@ header {
     font-size: 16px;
     line-height: 24px;
 }
+
+.contact-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 98px;
+    justify-content: center;
+}
+
+.start-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-info h1 {
+    margin-bottom: 7px;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 54px;
+}
+
+.start-info p {
+    display: flex;
+    text-align: center;
+    width: 644px;
+    height: 48px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #9F9F9F;
+}
+
+.more-info {
+    display: flex;
+    gap: 83px;
+    padding-inline: 243px;
+    margin-top: 140px;
+}
+
+.important-info {
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+    width: 393px;
+    height: 537px;
+}
+
+.address-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.address-info img {
+    width: 22px;
+    height: 27.59px;
+    margin-left: -50px;
+    margin-bottom: -10px;
+}
+
+.phone img {
+    width: 22.27px;
+    height: 22.27px;
+    margin-left: -55px;
+    margin-bottom: -35px;
+}
+
+.working-time img {
+    width: 23px;
+    height: 23px;
+    margin-left: -55px;
+    margin-bottom: -35px;
+}
+
+.address-info h3,
+.phone h3,
+.working-time h3 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+.address-info span {
+    width: 212px;
+    height: 72px;
+}
+
+.phone span {
+    width: 212px;
+    height: 48px;
+}
+
+.working-time span {
+    width: 212px;
+    height: 96px;
+}
+
+.address-info span,
+.phone span,
+.working-time span {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.your-name,
+.email-address,
+.subject,
+.message {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.your-name label,
+.email-address label,
+.subject label,
+.message label {
+    margin-bottom: 22px;
+}
+
+.input {
+    width: 528.75px;
+    height: 75px;
+    border-radius: 10px;
+    border: 1px solid #9F9F9F;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #9F9F9F;
+    padding-left: 31px;
+    margin-bottom: 36px;
+}
+
+.message-input {
+    width: 527px;
+    height: 120px;
+    border-radius: 10px;
+    border: 1px solid #9F9F9F;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #9F9F9F;
+    padding-left: 31px;
+}
+
+.submit-btn {
+    margin-top: 49px;
+}
+
+.submit-btn button {
+    width: 237px;
+    height: 55px;
+    border-radius: 5px;
+    border: 1px solid #B88E2F;
+    background: #B88E2F;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: white;
+}
+
+.promise {
+    margin-top: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FAF3EA;
+    width: 100%;
+    height: 270px;
+}
+
+.promise-title {
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 37.5px;
+    color: #242424;
+}
+
+.promise-description {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    color: #898989;
+}
+
+.promises-list {
+    display: flex;
+    gap: 55.33px;
+    padding-inline: 53px;
+}
+
+.one-promise {
+    display: flex;
+    gap: 13.61px;
+}
+
+.footer {
+    width: 1440px;
+    height: 505px;
+    padding-inline: 100px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-top: 1px solid #ddd;
+  }
+
+  .footer-column {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .footer-name {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  .address {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #9F9F9F;
+
+  }
+
+  .footer-heading {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #9F9F9F;
+  }
+
+  .footer-column ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+    padding: 0;
+  }
+
+  .footer-column ul li {
+    margin-bottom: 10px;
+  }
+
+  .footer-column ul li a {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+  }
+
+  .newsletter-form {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+  }
+
+  .newsletter-form input[type="email"] {
+    width: 173px;
+    height: 21px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #9F9F9F;
+
+  }
+
+  .newsletter-form button {
+    width: 75px;
+    height: 21px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    background: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .bottom-footer {
+    text-align: center;
+    margin-inline: 102.01px;
+    border-top: 1px solid #D9D9D9;
+  }
+
+  .bottom-p {
+    margin-top: 35px;
+    margin-bottom: 38px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: left;
+  }
+
+  @media (max-width: 768px) {
+    .footer {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer-column {
+      margin-bottom: 20px;
+    }
+
+    .newsletter-form {
+      flex-direction: column;
+    }
+
+    .newsletter-form input[type="email"] {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
