@@ -5,7 +5,11 @@ import * as bodyParser from 'body-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  app.enableCors({
+    origin: '*',  // Allow requests from all origins, you can limit this to specific origins
+    methods: 'GET,POST,PUT,PATCH,DELETE,OPTIONS',  // Allow these methods
+    allowedHeaders: 'Content-Type, Authorization',  // Allow specific headers
+  });
   app.setGlobalPrefix('api');
 
   const config = new DocumentBuilder()
